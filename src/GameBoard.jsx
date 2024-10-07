@@ -10,6 +10,7 @@ import blueB from "./assets/blueB.png";
 import greenB from "./assets/greenB.png";
 import yellowB from "./assets/yellowB.png";
 import pinkB from "./assets/pinkB.png";
+import bgImg from "./assets/bgImg.jpg";
 
 const width = 8;
 const candyColors = [red, yellow, pink, blue, green];
@@ -39,15 +40,14 @@ const GameBoard = () => {
       const isBlank = currentBoard[i] === "";
       // Check if there's a bonus candy in the match
       const hasBonusCandy = rowOfThree.some((i) =>
-            [redB, blueB, yellowB, greenB, pinkB].some(
-              (bonusCandy) => currentBoard[i] === bonusCandy
-            )
-          );
+        [redB, blueB, yellowB, greenB, pinkB].some(
+          (bonusCandy) => currentBoard[i] === bonusCandy
+        )
+      );
       if (i % width < width - 2) {
         if (
-          rowOfThree.every((i) => currentBoard[i] == decidedColor   && !isBlank)
+          rowOfThree.every((i) => currentBoard[i] == decidedColor && !isBlank)
         ) {
-          console.log(hasBonusCandy); 
           if (hasBonusCandy) {
             // Clear the entire row and column when a bonus candy is involved
             const rowStart = Math.floor(i / width) * width;
@@ -260,27 +260,42 @@ const GameBoard = () => {
   };
 
   return (
-    <div className="game-board">
-      {currentBoard.map((candyColor, index) => (
-        <div
-          key={index}
-          style={{
-            color: { candyColor },
-            backgroundImage: `url(${candyColor})`,
-            backgroundSize: "cover",
-            border:
-              firstCell === index
-                ? "3px solid #000"
-                : secondCell === index
-                ? "3px solid #f00"
-                : "none",
-          }}
-          className="candy-tile"
-          data-id={index}
-          onClick={() => Click(index)}
-          onDragOver={(e) => e.preventDefault()}
-        ></div>
-      ))}
+    <div
+      className=""
+      style={{
+        backgroundImage: `url(${bgImg})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <div className="container d-flex align-items-center justify-content-center py-5">
+        <div className="">
+          {/* <h4 className="text-center fw-bolder m-2">Candy Crush</h4> */}
+          <div className="game-board mt-5 p-3">
+            {currentBoard.map((candyColor, index) => (
+              <div
+                key={index}
+                style={{
+                  color: { candyColor },
+                  backgroundImage: `url(${candyColor})`,
+                  backgroundSize: "contain",
+                  backgroundRepeat:"no-repeat",
+                  border:
+                    firstCell === index
+                      ? "3px solid #000"
+                      : secondCell === index
+                      ? "3px solid #f00"
+                      : "none",
+                }}
+                className="candy-tile "
+                data-id={index}
+                onClick={() => Click(index)}
+                onDragOver={(e) => e.preventDefault()}
+              ></div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
