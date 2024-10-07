@@ -5,7 +5,7 @@ import yellow from "./assets/yellow.webp";
 import blue from "./assets/blue.webp";
 import green from "./assets/green.webp";
 import pink from "./assets/pink.webp";
-import redB from "./assets/redB.webp";
+import redB from "./assets/blueB.png";
 import blueB from "./assets/blueB.png";
 import greenB from "./assets/greenB.png";
 import yellowB from "./assets/yellowB.png";
